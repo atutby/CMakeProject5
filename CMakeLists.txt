@@ -12,4 +12,56 @@ endif()
 project ("CMakeProject5")
 
 # Include sub-projects.
-add_subdirectory ("CMakeProject5")
+# add_subdirectory ("CMakeProject5")
+
+# Build googletest
+add_subdirectory(
+	"${CMAKE_CURRENT_SOURCE_DIR}/googletest"
+	"googletest"
+)
+
+# Main target
+add_executable(
+	demo
+	CMakeProject5/CMakeProject5.cpp
+	CMakeProject5/CMakeProject5.h
+)
+
+# Test target
+add_executable(
+	test_list
+	test/test_list.cpp
+)
+
+
+target_include_directories(
+	test_list PRIVATE
+	"${CMAKE_CURRENT_SOURCE_DIR}/CMakeProject5"
+)
+
+target_link_libraries(
+	test_list PRIVATE
+	gtest gtest_main
+)
+
+if (MSVC)
+	set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+	target_compile_options(
+		demo PRIVATE
+		/W4
+	)
+	target_compile_options(
+		test_list PRIVATE
+		/W4
+	)
+else ()
+	target_compile_options(
+		demo PRIVATE
+		-Wall -Wextra -pedantic -Werror
+	)
+	target_compile_options(
+		test_list PRIVATE
+		-Wall -Wextra -pedantic -Werror
+	)
+endif()
