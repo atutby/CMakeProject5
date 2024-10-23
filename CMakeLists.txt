@@ -13,6 +13,7 @@ project ("CMakeProject5")
 
 # Include sub-projects.
 # add_subdirectory ("CMakeProject5")
+# add_subdirectory ("src")
 
 # Build googletest
 add_subdirectory(
@@ -23,8 +24,8 @@ add_subdirectory(
 # Main target
 add_executable(
 	demo
-	CMakeProject5/CMakeProject5.cpp
-	CMakeProject5/CMakeProject5.h
+    src/main.cpp
+    src/list.hpp
 )
 
 # Test target

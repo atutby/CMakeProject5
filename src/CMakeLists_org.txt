@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_executable (CMakeProject5 "CMakeProject5.cpp" "CMakeProject5.h")
+add_executable (CMakeProject5 "main.cpp" "list.hpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CMakeProject5 PROPERTY CXX_STANDARD 20)
